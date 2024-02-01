@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portfolios', function (Blueprint $table) {
-            $table->id();
-            $table->string ("title", 50);
-            $table->text("description");
-            $table->text("thumb")->nullable();
-            $table->timestamps();
+        Schema::table('portfolios', function (Blueprint $table) {
+
+            $table->foreignId('type_id')->nullable()->after("id")->constrained()->nullOnDelete();
         });
     }
 
@@ -25,6 +22,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolios');
+        Schema::table('portfolios', function (Blueprint $table) {
+
+            $table->dropForeign('portfolios_type_id_foreign');
+            $table->dropColumn('type_id');
+        });
     }
 };

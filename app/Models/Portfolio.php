@@ -14,6 +14,10 @@ class Portfolio extends Model
         "title",
         "description",
         "thumb",
-
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

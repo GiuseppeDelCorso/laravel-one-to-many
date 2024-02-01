@@ -20,9 +20,26 @@
                     <div class="card">
                         <div class="card-header">{{ $portfolios->title}}</div>
                         <div class="card-body">{{ $portfolios->description }}</div>
+                        <div>
+                            <img class="StyleImg" src="{{$portfolios->thumb}}" alt="">
+                        </div>
+                        <div>
+                            {{ $portfolios->type ? $portfolios->type->date : 'senza categoria' }}
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
 @endsection
+<style>
+
+.StyleImg{
+
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px 20px 20px 80px    
+}   
+
+</style>
